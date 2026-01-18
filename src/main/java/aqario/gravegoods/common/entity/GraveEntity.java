@@ -4,7 +4,6 @@ import aqario.gravegoods.common.GraveGoods;
 import aqario.gravegoods.common.config.GraveGoodsConfig;
 import aqario.gravegoods.common.integration.TrinketsIntegration;
 import aqario.gravegoods.common.screen.GraveScreenHandler;
-import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -28,13 +27,11 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
 
 public class GraveEntity extends Entity implements ContainerListener, MenuProvider {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final EntityDataAccessor<Optional<EntityReference<LivingEntity>>> OWNER = SynchedEntityData.defineId(GraveEntity.class, EntityDataSerializers.OPTIONAL_LIVING_ENTITY_REFERENCE);
     public final float uniqueOffset;
     public final SimpleContainer items = new SimpleContainer(54);
@@ -60,7 +57,6 @@ public class GraveEntity extends Entity implements ContainerListener, MenuProvid
         for(ItemStack item : items) {
             grave.items.addItem(item);
         }
-
         if(GraveGoods.isTrinketsLoaded()) {
             TrinketsIntegration.putTrinketsInGrave(player, grave);
         }
