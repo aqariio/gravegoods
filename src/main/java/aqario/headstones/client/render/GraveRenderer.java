@@ -1,7 +1,7 @@
-package aqario.gravegoods.client.render;
+package aqario.headstones.client.render;
 
-import aqario.gravegoods.client.model.GraveModel;
-import aqario.gravegoods.common.entity.GraveEntity;
+import aqario.headstones.client.model.GraveModel;
+import aqario.headstones.common.entity.GraveEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.player.LocalPlayer;

@@ -1,9 +1,9 @@
-package aqario.gravegoods.common.entity;
+package aqario.headstones.common.entity;
 
-import aqario.gravegoods.common.GraveGoods;
-import aqario.gravegoods.common.config.GraveGoodsConfig;
-import aqario.gravegoods.common.integration.TrinketsIntegration;
-import aqario.gravegoods.common.screen.GraveScreenHandler;
+import aqario.headstones.common.Headstones;
+import aqario.headstones.common.config.HeadstonesConfig;
+import aqario.headstones.common.integration.TrinketsIntegration;
+import aqario.headstones.common.screen.GraveScreenHandler;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -44,7 +44,7 @@ public class GraveEntity extends Entity implements ContainerListener, MenuProvid
     }
 
     public static GraveEntity create(Player player) {
-        GraveEntity grave = new GraveEntity(GraveGoodsEntityType.GRAVE, player.level());
+        GraveEntity grave = new GraveEntity(HeadstonesEntityTypes.GRAVE, player.level());
         grave.setPosRaw(player.getX(), player.getY(), player.getZ());
         grave.setCustomName(player.getName());
         grave.setOwner(player);
@@ -57,7 +57,7 @@ public class GraveEntity extends Entity implements ContainerListener, MenuProvid
         for(ItemStack item : items) {
             grave.items.addItem(item);
         }
-        if(GraveGoods.isTrinketsLoaded()) {
+        if(Headstones.isTrinketsLoaded()) {
             TrinketsIntegration.putTrinketsInGrave(player, grave);
         }
         grave.setOldPosAndRot();
@@ -74,7 +74,7 @@ public class GraveEntity extends Entity implements ContainerListener, MenuProvid
     @NotNull
     @Override
     public InteractionResult interact(Player player, InteractionHand hand) {
-        if(!GraveGoodsConfig.openOtherGraves
+        if(!HeadstonesConfig.openOtherGraves
             && this.getOwnerReference() != null
             && !(player.level() instanceof ServerLevel level
             && player.equals(this.getOwnerReference().getEntity(level, LivingEntity.class)))) {
@@ -214,7 +214,7 @@ public class GraveEntity extends Entity implements ContainerListener, MenuProvid
 
     @Override
     public boolean isCurrentlyGlowing() {
-        return GraveGoodsConfig.highlightGraves && this.level().isClientSide() && this.getOwnerReference() != null || super.isCurrentlyGlowing();
+        return HeadstonesConfig.highlightGraves && this.level().isClientSide() && this.getOwnerReference() != null || super.isCurrentlyGlowing();
     }
 
     @Nullable

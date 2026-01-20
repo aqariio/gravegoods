@@ -1,6 +1,6 @@
-package aqario.gravegoods.common.integration;
+package aqario.headstones.common.integration;
 
-import aqario.gravegoods.common.entity.GraveEntity;
+import aqario.headstones.common.entity.GraveEntity;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.util.Tuple;

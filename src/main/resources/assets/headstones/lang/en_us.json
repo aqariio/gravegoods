@@ -1,0 +1,10 @@
+{
+  "mod.headstones.name": "Headstones",
+  "entity.headstones.grave": "Grave",
+  "container.headstones.grave": "%s's remains",
+  "container.headstones.grave_unknown": "Someone's remains",
+  "headstones.midnightconfig.title": "Headstones Config",
+  "headstones.midnightconfig.enableGraves": "Enable Graves",
+  "headstones.midnightconfig.highlightGraves": "Highlight Graves",
+  "headstones.midnightconfig.openOtherGraves": "Can Open Graves of Other Players"
+}

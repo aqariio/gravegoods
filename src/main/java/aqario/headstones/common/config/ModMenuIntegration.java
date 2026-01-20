@@ -1,6 +1,6 @@
-package aqario.gravegoods.common.config;
+package aqario.headstones.common.config;
 
-import aqario.gravegoods.common.GraveGoods;
+import aqario.headstones.common.Headstones;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import eu.midnightdust.lib.config.MidnightConfig;
@@ -9,7 +9,7 @@ import eu.midnightdust.lib.config.MidnightConfig;
 public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> MidnightConfig.getScreen(parent, GraveGoods.ID);
+        return parent -> MidnightConfig.getScreen(parent, Headstones.ID);
     }
 }
 

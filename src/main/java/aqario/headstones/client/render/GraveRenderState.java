@@ -1,4 +1,4 @@
-package aqario.gravegoods.client.render;
+package aqario.headstones.client.render;
 
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;

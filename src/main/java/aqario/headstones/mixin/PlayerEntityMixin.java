@@ -1,9 +1,9 @@
-package aqario.gravegoods.mixin;
+package aqario.headstones.mixin;
 
-import aqario.gravegoods.common.GraveGoods;
-import aqario.gravegoods.common.config.GraveGoodsConfig;
-import aqario.gravegoods.common.entity.GraveEntity;
-import aqario.gravegoods.common.integration.TrinketsIntegration;
+import aqario.headstones.common.Headstones;
+import aqario.headstones.common.config.HeadstonesConfig;
+import aqario.headstones.common.entity.GraveEntity;
+import aqario.headstones.common.integration.TrinketsIntegration;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,8 +33,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     }
 
     @Inject(method = "dropEquipment", at = @At("HEAD"), cancellable = true)
-    private void gravegoods$dropInventory(CallbackInfo ci) {
-        if(!GraveGoodsConfig.enableGraves) {
+    private void headstones$dropInventory(CallbackInfo ci) {
+        if(!HeadstonesConfig.enableGraves) {
             return;
         }
         if(this.level() instanceof ServerLevel level && !level.getGameRules().get(GameRules.KEEP_INVENTORY)) {
@@ -51,7 +51,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Unique
     private boolean hasTrinkets() {
-        if(GraveGoods.isTrinketsLoaded()) {
+        if(Headstones.isTrinketsLoaded()) {
             return TrinketsIntegration.hasTrinkets(this);
         }
         return false;

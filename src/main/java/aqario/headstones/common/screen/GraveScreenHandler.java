@@ -1,6 +1,6 @@
-package aqario.gravegoods.common.screen;
+package aqario.headstones.common.screen;
 
-import aqario.gravegoods.common.entity.GraveEntity;
+import aqario.headstones.common.entity.GraveEntity;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

@@ -1,7 +1,7 @@
-package aqario.gravegoods.client.model;
+package aqario.headstones.client.model;
 
-import aqario.gravegoods.client.render.GraveRenderState;
-import aqario.gravegoods.common.GraveGoods;
+import aqario.headstones.client.render.GraveRenderState;
+import aqario.headstones.common.Headstones;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -9,13 +9,11 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 public class GraveModel extends EntityModel<GraveRenderState> {
-    public static final ModelLayerLocation DEFAULT_LAYER = new ModelLayerLocation(GraveGoods.id("grave_default"), "main");
-    public static final ModelLayerLocation PLAYER_LAYER = new ModelLayerLocation(GraveGoods.id("grave_player"), "main");
-    private final ModelPart head;
+    public static final ModelLayerLocation DEFAULT_LAYER = new ModelLayerLocation(Headstones.id("grave_default"), "main");
+    public static final ModelLayerLocation PLAYER_LAYER = new ModelLayerLocation(Headstones.id("grave_player"), "main");
 
     public GraveModel(ModelPart root) {
         super(root);
-        this.head = root.getChild("head");
     }
 
     public static LayerDefinition createDefaultLayer() {

@@ -1,6 +1,6 @@
-package aqario.gravegoods.common.entity;
+package aqario.headstones.common.entity;
 
-import aqario.gravegoods.common.GraveGoods;
+import aqario.headstones.common.Headstones;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -9,14 +9,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
-public class GraveGoodsEntityType {
+public class HeadstonesEntityTypes {
     public static final EntityType<GraveEntity> GRAVE = register("grave",
         EntityType.Builder.of(GraveEntity::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)
     );
 
     private static ResourceKey<EntityType<?>> entityId(String id) {
-        return ResourceKey.create(Registries.ENTITY_TYPE, GraveGoods.id(id));
+        return ResourceKey.create(Registries.ENTITY_TYPE, Headstones.id(id));
     }
 
     private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder) {
