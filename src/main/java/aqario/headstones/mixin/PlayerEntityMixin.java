@@ -42,7 +42,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             if(!this.inventory.isEmpty()
                 || this.hasTrinkets()
             ) {
-                GraveEntity grave = GraveEntity.create(Player.class.cast(this));
+                GraveEntity grave = GraveEntity.create((Player) (Object) this);
                 this.level().addFreshEntity(grave);
                 ci.cancel();
             }

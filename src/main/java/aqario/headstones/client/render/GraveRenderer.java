@@ -17,7 +17,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class GraveRenderer extends EntityRenderer<GraveEntity, GraveRenderState> {
     private static final Identifier DEFAULT_TEXTURE = Identifier.withDefaultNamespace("textures/entity/skeleton/skeleton.png");
@@ -86,11 +85,9 @@ public class GraveRenderer extends EntityRenderer<GraveEntity, GraveRenderState>
     }
 
     @Override
-    public void extractRenderState(GraveEntity grave, GraveRenderState state, float f) {
-        super.extractRenderState(grave, state, f);
-        state.owner = (LocalPlayer) Optional.ofNullable(grave.getOwnerReference())
-            .map(reference -> EntityReference.getPlayer(reference, grave.level()))
-            .orElse(null);
+    public void extractRenderState(GraveEntity grave, GraveRenderState state, float tickDelta) {
+        super.extractRenderState(grave, state, tickDelta);
+        state.owner = (LocalPlayer) EntityReference.getPlayer(grave.getOwnerReference(), grave.level());
         state.bobOffset = grave.bobOffset;
     }
 }

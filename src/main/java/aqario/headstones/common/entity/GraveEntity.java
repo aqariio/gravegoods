@@ -82,8 +82,8 @@ public class GraveEntity extends Entity implements ContainerListener, MenuProvid
     public InteractionResult interact(Player player, InteractionHand hand) {
         if(!HeadstonesConfig.openOtherGraves
             && this.getOwnerReference() != null
-            && !(player.level() instanceof ServerLevel level
-            && player.equals(EntityReference.getPlayer(this.getOwnerReference(), level)))) {
+            && !player.equals(EntityReference.getPlayer(this.getOwnerReference(), this.level()))
+        ) {
             return super.interact(player, hand);
         }
         if(!player.level().isClientSide()
