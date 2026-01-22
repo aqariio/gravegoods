@@ -1,11 +1,11 @@
 package aqario.headstones.client.render;
 
+import aqario.headstones.client.PlayerInfoCache;
 import aqario.headstones.client.model.GraveModel;
 import aqario.headstones.common.entity.GraveEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -75,9 +75,9 @@ public class GraveRenderer extends EntityRenderer<GraveEntity, GraveRenderState>
 
     @NotNull
     public Identifier getTextureLocation(GraveRenderState state) {
-        PlayerInfo player = state.owner;
-        if(player != null) {
-            return player.getSkin().body().texturePath();
+        PlayerInfoCache cache = state.owner;
+        if(cache != null && cache.playerInfo() != null) {
+            return cache.playerInfo().getSkin().body().texturePath();
         }
         return DEFAULT_TEXTURE;
     }
@@ -92,9 +92,14 @@ public class GraveRenderer extends EntityRenderer<GraveEntity, GraveRenderState>
         super.extractRenderState(grave, state, tickDelta);
         Optional<UUID> uuid = Optional.ofNullable(grave.getOwnerReference())
             .map(EntityReference::getUUID);
-        state.owner = Optional.ofNullable(Minecraft.getInstance().getConnection())
-            .flatMap(connection -> uuid.map(connection::getPlayerInfo))
-            .orElse(null);
+        if(state.owner == null || !state.owner.playerReference().equals(grave.getOwnerReference())) {
+            state.owner = new PlayerInfoCache(
+                grave.getOwnerReference(),
+                Optional.ofNullable(Minecraft.getInstance().getConnection())
+                    .flatMap(connection -> uuid.map(connection::getPlayerInfo))
+                    .orElse(null)
+            );
+        }
         state.bobOffset = grave.bobOffset;
     }
 }
